@@ -42,6 +42,8 @@ target_wrapper.*
 *.qmlproject.user
 *.qmlproject.user.*
 
+Remote/build
+
 # QtCreator CMake
 CMakeLists.txt.user*
 
