@@ -1,4 +1,4 @@
-QT       += core gui websockets
+QT       += core gui websockets svg
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -10,10 +10,14 @@ CONFIG += c++17
 
 SOURCES += \
     main.cpp \
-    mainwindow.cpp
+    mainwindow.cpp \
+    urlbar.cpp \
+    urltextedit.cpp
 
 HEADERS += \
-    mainwindow.h
+    mainwindow.h \
+    urlbar.h \
+    urltextedit.h
 
 FORMS += \
     mainwindow.ui
@@ -22,3 +26,6 @@ FORMS += \
 qnx: target.path = /tmp/$${TARGET}/bin
 else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
+
+RESOURCES += \
+    res.qrc
