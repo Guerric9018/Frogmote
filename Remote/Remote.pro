@@ -9,6 +9,7 @@ CONFIG += c++17
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
+    client.cpp \
     main.cpp \
     mainwindow.cpp \
     urlbar.cpp \
@@ -17,7 +18,9 @@ SOURCES += \
 HEADERS += \
     mainwindow.h \
     urlbar.h \
-    urltextedit.h
+    urltextedit.h \
+    client.h \
+    mainwindow.h
 
 FORMS += \
     mainwindow.ui
