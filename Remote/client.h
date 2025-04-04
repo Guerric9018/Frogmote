@@ -12,6 +12,7 @@ public:
 
 private:
     QWebSocket *ws;
+    std::uint64_t epoch;
 
     void onConnect();
     void onDisconnect();
