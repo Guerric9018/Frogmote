@@ -12,12 +12,18 @@ SOURCES += \
     client.cpp \
     main.cpp \
     mainwindow.cpp \
+    preset.cpp \
+    settingsbutton.cpp \
     urlbar.cpp \
+    urlcheckmark.cpp \
     urltextedit.cpp
 
 HEADERS += \
     mainwindow.h \
+    preset.h \
+    settingsbutton.h \
     urlbar.h \
+    urlcheckmark.h \
     urltextedit.h \
     client.h \
     mainwindow.h

@@ -2,7 +2,8 @@
 #define URLBAR_H
 
 #include <QWidget>
-#include "urltextedit.h"
+#include "urlcheckmark.h"
+#include "client.h"
 
 class UrlBar: public QWidget
 {
@@ -11,8 +12,12 @@ public:
     UrlBar(QWidget *parent);
 private:
     QPixmap backgroundPixmap;
-    UrlTextEdit *urlTextEdit;
+    UrlCheckMark *urlCheckMark;
+    Client *client;
+
     void paintEvent(QPaintEvent*) override;
+private slots:
+    void urlEdited(const QString &newText);
 };
 
 #endif

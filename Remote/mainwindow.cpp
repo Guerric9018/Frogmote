@@ -1,9 +1,12 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 #include "urlbar.h"
+#include "settingsbutton.h"
+#include "preset.h"
 
 #include <QLabel>
 #include <QHBoxLayout>
+#include <QVBoxLayout>
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -11,12 +14,51 @@ MainWindow::MainWindow(QWidget *parent)
 {
     ui->setupUi(this);
 
-    QHBoxLayout *mainLayout = new QHBoxLayout;
-    QLabel *label = new QLabel("Hello world");
-    mainLayout->addWidget(label);
+    setFixedSize(750, 550);
+    setWindowTitle("Remote Desktop");
 
+    // Background color
+    setStyleSheet("background-color: rgb(201, 247, 192);");
+
+    // --- Main Layout ---
+    QVBoxLayout *mainLayout = new QVBoxLayout;
+
+    // Top margin
+    QWidget *top_margin = new QWidget(this);
+    top_margin->setFixedHeight(25);
+    mainLayout->addWidget(top_margin);
+
+    // --- Top Layout: Url and settings ---
+    QHBoxLayout *topLayout = new QHBoxLayout;
+    mainLayout->addLayout(topLayout);
+
+    // Left margin
+    QWidget *left_margin = new QWidget(this);
+    left_margin->setFixedWidth(50);
+    topLayout->addWidget(left_margin);
+
+    // Url
     UrlBar *textEdit = new UrlBar(this);
-    mainLayout->addWidget(textEdit);
+    topLayout->addWidget(textEdit);
+
+    // Settings
+    SettingsButton *settingsButton = new SettingsButton(this);
+    topLayout->addWidget(settingsButton);
+
+
+    // --- Bottom Layout: presets and cards ---
+    QHBoxLayout *bottomLayout = new QHBoxLayout;
+    mainLayout->addLayout(bottomLayout);
+
+    QWidget *presetsContainer = new QWidget(this);
+    bottomLayout->addWidget(presetsContainer);
+
+    for (unsigned int i = 4; i > 0; i--) {
+        Preset *preset = new Preset(presetsContainer, i);
+        int yOffset = (i - 1) * 90;
+        if (i == 1) yOffset += 20;
+        preset->setGeometry(0, yOffset, preset->width(), preset->height());
+    }
 
     QWidget *centralWidget = new QWidget(this);
     centralWidget->setLayout(mainLayout);

@@ -4,30 +4,47 @@
 #include <QJsonArray>
 
 Client::Client()
-    : epoch(0)
+    : ws(nullptr)
+    , epoch(0)
 {
-    auto url = QString("ws://137.194.156.142:8081/sensor/connect?type=android.sensor.orientation");
-    ws = new QWebSocket(url);
-    connect(ws, &QWebSocket::connected, this, &Client::onConnect);
-    connect(ws, &QWebSocket::disconnected, this, &Client::onDisconnect);
-    ws->open(url);
-    qDebug() << "[WebSocket] Initialized";
+    qDebug() << "[WebSocket] Created";
 }
 
 Client::~Client()
 {
-    delete ws;
+    if (ws) {
+        ws->close();
+        ws->deleteLater();
+    }
+}
+
+void Client::openConnection(const QString &address)
+{
+    if (ws) {
+        ws->close();
+        ws->deleteLater();
+        ws = nullptr;
+    }
+
+    QUrl url(address + "/sensor/connect?type=android.sensor.orientation");
+    ws = new QWebSocket();
+    connect(ws, &QWebSocket::connected, this, &Client::onConnect);
+    connect(ws, &QWebSocket::disconnected, this, &Client::onDisconnect);
+    ws->open(url);
+    qDebug() << "[WebSocket] Attempting connection to" << url.toString();
 }
 
 void Client::onConnect()
 {
     qDebug() << "[WebSocket] Connected";
     connect(ws, &QWebSocket::textMessageReceived, this, &Client::onMessage);
+    emit connectionStatusChanged(true);
 }
 
 void Client::onDisconnect()
 {
     qDebug() << "[WebSocket] Disconnected" << ws->closeReason();
+    emit connectionStatusChanged(false);
 }
 
 void Client::onMessage(QString msg)

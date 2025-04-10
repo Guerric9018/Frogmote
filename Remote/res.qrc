@@ -1,5 +1,12 @@
 <RCC>
     <qresource prefix="/">
         <file>res/url_text_edit.png</file>
+        <file>res/url_checkmark.png</file>
+        <file>res/settings_button.png</file>
+        <file>res/preset_1.png</file>
+        <file>res/preset_2.png</file>
+        <file>res/preset_3.png</file>
+        <file>res/preset_4.png</file>
+        <file>res/dots.png</file>
     </qresource>
 </RCC>
