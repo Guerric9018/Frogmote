@@ -9,8 +9,6 @@ UrlTextEdit::UrlTextEdit(QWidget *parent): QLineEdit(parent) {
             border: none;
             font-size: 15pt;
             color: black;
-            padding-left: 0px;
-            padding-top: 0px;
         }
     )");
 }

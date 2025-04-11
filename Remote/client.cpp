@@ -26,7 +26,7 @@ void Client::openConnection(const QString &address)
         ws = nullptr;
     }
 
-    QUrl url(address + "/sensor/connect?type=android.sensor.orientation");
+    QUrl url("ws://" + address + "/sensor/connect?type=android.sensor.orientation");
     ws = new QWebSocket();
     connect(ws, &QWebSocket::connected, this, &Client::onConnect);
     connect(ws, &QWebSocket::disconnected, this, &Client::onDisconnect);
