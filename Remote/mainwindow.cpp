@@ -78,12 +78,12 @@ MainWindow::MainWindow(QWidget *parent)
     scrollArea->setWidget(contentWidget);
 
     QGridLayout *gridLayout = new QGridLayout(contentWidget);
+    gridLayout->setVerticalSpacing(15);
     contentWidget->setLayout(gridLayout);
 
     for (unsigned int i = 0; i < 30; i++) {
         Card *card = new Card(contentWidget);
         gridLayout->addWidget(card, i / 2, i % 2);
-        //preset->setGeometry(0, yOffset, preset->width(), preset->height());
     }
 
 
