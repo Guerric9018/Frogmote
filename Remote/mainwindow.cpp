@@ -3,10 +3,13 @@
 #include "urlbar.h"
 #include "settingsbutton.h"
 #include "preset.h"
+#include "card.h"
 
 #include <QLabel>
 #include <QHBoxLayout>
 #include <QVBoxLayout>
+#include <QGridLayout>
+#include <QScrollArea>
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -22,10 +25,11 @@ MainWindow::MainWindow(QWidget *parent)
 
     // --- Main Layout ---
     QVBoxLayout *mainLayout = new QVBoxLayout;
+    mainLayout->setSpacing(20);
 
     // Top margin
     QWidget *top_margin = new QWidget(this);
-    top_margin->setFixedHeight(25);
+    top_margin->setFixedHeight(5);
     mainLayout->addWidget(top_margin);
 
     // --- Top Layout: Url and settings ---
@@ -50,7 +54,9 @@ MainWindow::MainWindow(QWidget *parent)
     QHBoxLayout *bottomLayout = new QHBoxLayout;
     mainLayout->addLayout(bottomLayout);
 
+    // Preset buttons
     QWidget *presetsContainer = new QWidget(this);
+    presetsContainer->setSizePolicy(QSizePolicy::Minimum, QSizePolicy::Preferred);
     bottomLayout->addWidget(presetsContainer);
 
     for (unsigned int i = 4; i > 0; i--) {
@@ -59,6 +65,27 @@ MainWindow::MainWindow(QWidget *parent)
         if (i == 1) yOffset += 20;
         preset->setGeometry(0, yOffset, preset->width(), preset->height());
     }
+
+    // Cards
+    QScrollArea *scrollArea = new QScrollArea(this);
+    scrollArea->setFixedWidth(650);
+    scrollArea->setWidgetResizable(true);
+    scrollArea->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+    bottomLayout->addWidget(scrollArea);
+
+    QWidget *contentWidget = new QWidget;
+    contentWidget->setFixedWidth(650);
+    scrollArea->setWidget(contentWidget);
+
+    QGridLayout *gridLayout = new QGridLayout(contentWidget);
+    contentWidget->setLayout(gridLayout);
+
+    for (unsigned int i = 0; i < 30; i++) {
+        Card *card = new Card(contentWidget);
+        gridLayout->addWidget(card, i / 2, i % 2);
+        //preset->setGeometry(0, yOffset, preset->width(), preset->height());
+    }
+
 
     QWidget *centralWidget = new QWidget(this);
     centralWidget->setLayout(mainLayout);
