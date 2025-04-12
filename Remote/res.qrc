@@ -9,5 +9,7 @@
         <file>res/preset_4.png</file>
         <file>res/dots.png</file>
         <file>res/card_frame.png</file>
+        <file>res/info_icon.png</file>
+        <file>res/info_icon.ico</file>
     </qresource>
 </RCC>

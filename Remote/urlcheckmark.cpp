@@ -1,4 +1,5 @@
 #include "urlcheckmark.h"
+#include "notify.h"
 
 #include <QPainter>
 
@@ -29,6 +30,7 @@ void UrlCheckMark::updateState(bool validate)
         if (backgroundPixmap.isNull()) {
             qWarning("PNG image failed to load");
         }
+        new Notify(this, ":/res/info_icon.ico", "Connected", "Successfully connected to your phone", (HWND)this->winId());
         update();
     }
     else {
