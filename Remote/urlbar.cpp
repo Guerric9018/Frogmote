@@ -15,23 +15,11 @@ UrlBar::UrlBar(QWidget *parent): QWidget(parent) {
     urlCheckMark = new UrlCheckMark(this);
     layout->addWidget(urlCheckMark);
 
-    QLabel *prefix = new QLabel(this);
-    prefix->setText("ws://");
-    prefix->setStyleSheet(R"(
-        QLabel {
-            background: transparent;
-            border: none;
-            font-size: 15pt;
-            color: black;
-        }
-    )");
-    layout->addWidget(prefix);
-
-    UrlTextEdit *urlTextEdit = new UrlTextEdit(this);
+    urlTextEdit = new UrlTextEdit(this);
     urlTextEdit->setPlaceholderText("111.111.111.111:8000");
     layout->addWidget(urlTextEdit);
 
-    connect(urlTextEdit, &QLineEdit::textChanged,
+    connect(urlTextEdit, &QLineEdit::editingFinished,
             this, &UrlBar::urlEdited);
 
     client = new Client();
@@ -52,7 +40,7 @@ void UrlBar::paintEvent(QPaintEvent *event)
     QWidget::paintEvent(event);
 }
 
-void UrlBar::urlEdited(const QString &newText)
+void UrlBar::urlEdited()
 {
-    client->openConnection(newText);
+    client->openConnection(urlTextEdit->text());
 }

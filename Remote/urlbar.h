@@ -4,6 +4,7 @@
 #include <QWidget>
 #include "urlcheckmark.h"
 #include "client.h"
+#include "urltextedit.h"
 
 class UrlBar: public QWidget
 {
@@ -13,11 +14,12 @@ public:
 private:
     QPixmap backgroundPixmap;
     UrlCheckMark *urlCheckMark;
+    UrlTextEdit *urlTextEdit;
     Client *client;
 
     void paintEvent(QPaintEvent*) override;
 private slots:
-    void urlEdited(const QString &newText);
+    void urlEdited();
 };
 
 #endif
