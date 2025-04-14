@@ -30,9 +30,10 @@ UrlTextEdit::UrlTextEdit(QWidget *parent): QLineEdit(parent) {
             border: none;
             font-size: 15pt;
             color: black;
+            font-family: Consolas;
         }
     )");
-    setInputMask("ws://999.999.999.999:9999;0");
+    setInputMask(u8"ws://999.999.999.999:9999;•");
 
     setValidator(new urlValidator());
 }
