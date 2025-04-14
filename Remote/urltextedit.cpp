@@ -11,7 +11,7 @@ struct urlValidator : public QValidator
     {
         for (int i = 0; i < 4; ++i) {
             auto byte = QStringView(&input[5 + i * 4], 3);
-            if (byte.toInt() >= 128) {
+            if (byte.toInt() >= 256) {
                 return Invalid;
             }
         }
@@ -32,7 +32,7 @@ UrlTextEdit::UrlTextEdit(QWidget *parent): QLineEdit(parent) {
             color: black;
         }
     )");
-    setInputMask("ws://ddd.ddd.ddd.ddd:dddd;0");
+    setInputMask("ws://999.999.999.999:9999;0");
 
     setValidator(new urlValidator());
 }
