@@ -1,0 +1,14 @@
+Fichier dans lequel on va bullshit. 
+Contexte du projet :
+
+Motivations du projet :
+
+The design Process :
+
+
+- explain the design process, describe the planned interface and the differences from the implemented interface.
+- present the prototype (with a short demo)
+- don't forget:
+    - to speak about the evaluation 
+    - to share time between all project's participants and to explain the role of each of them
+    - to upload the TP and the project deliverables
