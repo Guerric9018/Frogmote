@@ -1,9 +1,21 @@
-#include "notify.h"
+#include "notifiable.h"
+#include "notifiablewindows.h"
 #include <QTimer>
 #include <QResource>
+#include <QWidget>
 
 
-Notify::Notify(QObject* parent, const QString &file_name, const QString &title, const QString &message, HWND hwnd) : QObject(parent) {
+NotifiableWindows::NotifiableWindows(QWidget *parent)
+    : parent(parent)
+{
+}
+
+NotifiableWindows::~NotifiableWindows()
+{
+}
+
+void NotifiableWindows::notify([[maybe_unused]] const QString &file_name, const QString &title, const QString &message) {
+    HWND hwnd = (HWND) parent->winId();
     memset(&nid, 0, sizeof(NOTIFYICONDATA));
     nid.cbSize = sizeof(NOTIFYICONDATA);
     nid.hWnd = hwnd; // Associated window
@@ -30,15 +42,9 @@ Notify::Notify(QObject* parent, const QString &file_name, const QString &title, 
     if (!Shell_NotifyIcon(NIM_MODIFY, &nid)) {
         qWarning("Shell_NotifyIcon(NIM_MODIFY) failed. Error: %lu", GetLastError());
     }
-
-    // Schedule deletion after 3 seconds.
-    QTimer::singleShot(2500, this, [this]() {
-        Shell_NotifyIcon(NIM_DELETE, &nid);
-        this->deleteLater();
-    });
 }
 
-HICON Notify::loadHICONFromResource(const QString &file_name, int desired_width, int desired_height)
+HICON NotifiableWindows::loadHICONFromResource(const QString &file_name, int desired_width, int desired_height)
 {
     QResource resource(file_name);
     if (!resource.isValid()) {

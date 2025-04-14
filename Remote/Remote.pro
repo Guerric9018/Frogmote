@@ -13,7 +13,8 @@ SOURCES += \
     client.cpp \
     main.cpp \
     mainwindow.cpp \
-    notify.cpp \
+    notifiable.cpp \
+    notifiablewindows.cpp \
     preset.cpp \
     settingsbutton.cpp \
     urlbar.cpp \
@@ -23,7 +24,8 @@ SOURCES += \
 HEADERS += \
     card.h \
     mainwindow.h \
-    notify.h \
+    notifiable.h \
+    notifiablewindows.h \
     preset.h \
     settingsbutton.h \
     urlbar.h \

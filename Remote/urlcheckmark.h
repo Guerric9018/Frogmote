@@ -2,6 +2,7 @@
 #define URLCHECKMARK_H
 
 #include <QWidget>
+#include "notifiable.h"
 
 class UrlCheckMark: public QWidget
 {
@@ -9,9 +10,12 @@ class UrlCheckMark: public QWidget
 public:
     UrlCheckMark(QWidget *parent);
     void updateState(bool validate);
+
+    ~UrlCheckMark();
 private:
     QPixmap backgroundPixmap;
     void paintEvent(QPaintEvent*) override;
+    Notifiable *output;
 };
 
 #endif // URLCHECKMARK_H
