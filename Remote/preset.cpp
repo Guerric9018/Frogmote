@@ -44,7 +44,7 @@ void Preset::enable()
     setIconSize(size());
     for (size_t i = 0; i < cards.size(); ++i) {
         auto card = new Card(card_container, cards[i]);
-        layout->addWidget(card, i / 2, i % 2);
+        layout->addWidget(card, i / 2, i % 2, Qt::AlignTop | Qt::AlignLeft);
     }
 }
 
