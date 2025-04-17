@@ -1,0 +1,11 @@
+#ifndef GESTURES_H
+#define GESTURES_H
+
+enum Gesture {
+    RIGHTWARD_SWIPE,
+    LEFTWARD_SWIPE,
+    UPWARD_SWIPE,
+    DOWNWARD_SWIPE
+};
+
+#endif // GESTURES_H

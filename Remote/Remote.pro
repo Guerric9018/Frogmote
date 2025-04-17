@@ -29,9 +29,11 @@ SOURCES += \
 HEADERS += \
     actioncontroller.h \
     actioncontrollerwindows.h \
+    actions.h \
     card.h \
     gesturehandler.h \
     loadpresets.h \
+    gestures.h \
     mainwindow.h \
     notifiable.h \
     preset.h \

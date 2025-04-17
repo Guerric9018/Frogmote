@@ -13,5 +13,9 @@
         <file>res/info_icon.ico</file>
         <file>res/logo.png</file>
         <file>res/splash_screen.png</file>
+        <file>res/preset_selected_1.png</file>
+        <file>res/preset_selected_2.png</file>
+        <file>res/preset_selected_3.png</file>
+        <file>res/preset_selected_4.png</file>
     </qresource>
 </RCC>

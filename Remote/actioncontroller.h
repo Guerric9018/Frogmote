@@ -1,7 +1,7 @@
 #ifndef ACTIONCONTROLLER_H
 #define ACTIONCONTROLLER_H
 
-#include "gesturehandler.h"
+#include "gestures.h"
 
 #include <QObject>
 
@@ -13,9 +13,12 @@ public:
     virtual void forward() = 0;
     virtual void backward() = 0;
     virtual void mute() = 0;
+    virtual void previous() = 0;
+    virtual void next() = 0;
+    virtual void screenshot() = 0;
     virtual ~ActionController() {};
 public slots:
-    void actionDispatch(GestureHandler::Code code);
+    void actionDispatch(Gesture gesture);
 };
 
 #endif // ACTIONCONTROLLER_H

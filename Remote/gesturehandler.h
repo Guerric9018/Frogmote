@@ -7,19 +7,14 @@
 #include <QVector3D>
 #include <QElapsedTimer>
 
+#include "gestures.h"
+
 class GestureHandler : public QObject
 {
     Q_OBJECT
 public:
     GestureHandler(QObject *parent = nullptr);
     void processData(const QJsonObject &data);
-
-    enum Code {
-        RIGHTWARD_SWIPE,
-        LEFTWARD_SWIPE,
-        UPWARD_SWIPE,
-        DOWNWARD_SWIPE
-    };
 private:
     enum State {
         STANDBY,
@@ -45,7 +40,7 @@ private:
     const int NO_ROTATION_THRESHOLD = 10;
 
 signals:
-    void gestureDetected(Code code);
+    void gestureDetected(Gesture gesture);
 };
 
 #endif // GESTUREHANDLER_H
