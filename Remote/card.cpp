@@ -84,9 +84,9 @@ Card::data Card::getData() const
 }
 
 void Card::gestureChanged(int gesture) {
-    data_->gesture = (Gesture) gesture;
+    data_->gesture = (Gesture) (gesture + 1);
 }
 
 void Card::actionChanged(int action) {
-    data_->action = (Action) action;
+    data_->action = (Action) (action + 1);
 }
