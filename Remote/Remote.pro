@@ -9,8 +9,11 @@ CONFIG += c++17
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
+    actioncontroller.cpp \
+    actioncontrollerwindows.cpp \
     card.cpp \
     client.cpp \
+    gesturehandler.cpp \
     main.cpp \
     mainwindow.cpp \
     notifiable.cpp \
@@ -22,7 +25,10 @@ SOURCES += \
     urltextedit.cpp
 
 HEADERS += \
+    actioncontroller.h \
+    actioncontrollerwindows.h \
     card.h \
+    gesturehandler.h \
     mainwindow.h \
     notifiable.h \
     notifiablewindows.h \

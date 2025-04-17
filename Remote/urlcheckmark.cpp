@@ -28,7 +28,6 @@ void UrlCheckMark::paintEvent(QPaintEvent *event)
 
 void UrlCheckMark::updateState(bool validate)
 {
-    qDebug() << validate;
     if (validate) {
         backgroundPixmap = QPixmap(":/res/url_checkmark.png");
         if (backgroundPixmap.isNull()) {
