@@ -85,10 +85,13 @@ void ActionControllerWindows::actionDispatch(Gesture gesture) {
             break;
         case FORWARD:
             forward();
+            break;
         case PREVIOUS:
             previous();
+            break;
         case NEXT:
             next();
+            break;
         case SCREENSHOT:
             screenshot();
         default:

@@ -2,8 +2,11 @@ Project Context :
 
 Project Motivation :
 * One of the main points of this project is to enable its users to accomplish simple tasks on their computer without having to interact with the keyboard or the mouse. It makes it possible to use it while your hands are dirty, when you are far from the computer, or for people who struggle to use the mouse and keyboard because of various reasons.
-* It would only require some memorization to use, and the user would only need to remember the gestures they want to use.
+* Who hasn’t needed to pause a video or skip a song, but was too far from the computer, busy doing something else? Well, that’s exactly the problem our project Frogmote aims to solve.
+* It only requires some memorization to use, and the user only needs to remember the gestures they want to use to remotely control their computer.
 * Another strong point is to have one common piece of software that can be used to emulate an amount of gadgets like a pointer for slides or a remote.
+
+The concept of the project
 
 The Design Process :
 * We tried to think about the archetypes we were targeting, and it ended up being people who are slightly older and maybe don't have a lot of experience with computers. So, we decided to make a friendly interface with as little clutter as possible and little room for errors. We also opted for a friendly color theme but we kept in mind accessibility by keeping strong value contrast.
