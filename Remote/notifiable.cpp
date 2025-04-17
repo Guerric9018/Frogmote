@@ -7,6 +7,7 @@ Notifiable::Notifiable(QObject *parent)
     trayIcon->show();
 }
 
-void Notifiable::notify([[maybe_unused]] const QString &file_name, const QString &title, const QString &message) {
+void Notifiable::notify([[maybe_unused]] const QString &file_name, const QString &title, const QString &message) const
+{
     trayIcon->showMessage(title, message, QSystemTrayIcon::Information, 2500);
 }

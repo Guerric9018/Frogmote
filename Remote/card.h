@@ -10,7 +10,8 @@ class Card : public QWidget
 public:
     struct data
     {
-        int my_value;
+        int gesture;
+        int action;
     };
 
     explicit Card(QWidget *parent = nullptr, data d = {});

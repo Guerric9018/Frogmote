@@ -13,7 +13,7 @@ public:
 private:
     QPixmap backgroundPixmap;
     void paintEvent(QPaintEvent*) override;
-    std::unique_ptr<Notifiable> output;
+    Notifiable *output;
 };
 
 #endif // URLCHECKMARK_H
