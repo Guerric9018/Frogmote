@@ -2,8 +2,8 @@
 
 #include <QPainter>
 
-Card::Card(QWidget *parent)
-    : QWidget{parent}
+Card::Card(QWidget *parent, data d)
+    : QWidget{parent}, data_{d}
 {
     backgroundPixmap = QPixmap(":/res/card_frame.png");
     if (backgroundPixmap.isNull()) {
@@ -24,4 +24,9 @@ void Card::paintEvent(QPaintEvent *event)
     QPixmap scaledPixmap = backgroundPixmap.scaled(size(), Qt::KeepAspectRatio, Qt::SmoothTransformation);
     painter.drawPixmap(0, 0, scaledPixmap);
     QWidget::paintEvent(event);
+}
+
+Card::data Card::getData() const
+{
+    return data_;
 }

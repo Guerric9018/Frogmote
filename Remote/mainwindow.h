@@ -3,6 +3,7 @@
 
 #include <QMainWindow>
 #include "client.h"
+#include "preset.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui {
@@ -21,5 +22,9 @@ public:
 private:
     Ui::MainWindow *ui;
     Client client;
+    size_t selected;
+    std::vector<std::unique_ptr<Preset>> presets;
+
+    void selectPreset(size_t i);
 };
 #endif // MAINWINDOW_H

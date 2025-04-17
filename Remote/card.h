@@ -8,9 +8,18 @@ class Card : public QWidget
 {
     Q_OBJECT
 public:
-    explicit Card(QWidget *parent = nullptr);
+    struct data
+    {
+        int my_value;
+    };
+
+    explicit Card(QWidget *parent = nullptr, data d = {});
+
+    data getData() const;
+
 private:
     QPixmap backgroundPixmap;
+    data data_;
 
     void paintEvent(QPaintEvent*) override;
 signals:

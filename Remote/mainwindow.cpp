@@ -14,6 +14,8 @@
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
+    , presets(4)
+    , selected(0)
 {
     ui->setupUi(this);
 
@@ -59,13 +61,6 @@ MainWindow::MainWindow(QWidget *parent)
     presetsContainer->setSizePolicy(QSizePolicy::Minimum, QSizePolicy::Preferred);
     bottomLayout->addWidget(presetsContainer);
 
-    for (unsigned int i = 4; i > 0; i--) {
-        Preset *preset = new Preset(presetsContainer, i);
-        int yOffset = (i - 1) * 90;
-        if (i == 1) yOffset += 20;
-        preset->setGeometry(0, yOffset, preset->width(), preset->height());
-    }
-
     // Cards
     QScrollArea *scrollArea = new QScrollArea(this);
     scrollArea->setFixedWidth(650);
@@ -76,16 +71,19 @@ MainWindow::MainWindow(QWidget *parent)
     QWidget *contentWidget = new QWidget;
     contentWidget->setFixedWidth(650);
     scrollArea->setWidget(contentWidget);
-
-    QGridLayout *gridLayout = new QGridLayout(contentWidget);
+    auto gridLayout = new QGridLayout();
     gridLayout->setVerticalSpacing(15);
     contentWidget->setLayout(gridLayout);
 
-    for (unsigned int i = 0; i < 30; i++) {
-        Card *card = new Card(contentWidget);
-        gridLayout->addWidget(card, i / 2, i % 2);
+    for (int i = 4-1; i >= 0; --i) {
+        presets[i] = std::make_unique<Preset>(presetsContainer, contentWidget, gridLayout, i);
+        auto preset = presets[i].get();
+        int yOffset = i * 90;
+        if (i == 0) yOffset += 20;
+        preset->setGeometry(0, yOffset, preset->width(), preset->height());
+        connect(preset, &QPushButton::released, this, [=] () { selectPreset(i); });
     }
-
+    presets[selected]->enable();
 
     QWidget *centralWidget = new QWidget(this);
     centralWidget->setLayout(mainLayout);
@@ -95,4 +93,11 @@ MainWindow::MainWindow(QWidget *parent)
 MainWindow::~MainWindow()
 {
     delete ui;
+}
+
+void MainWindow::selectPreset(size_t i)
+{
+    presets[selected]->disable();
+    selected = i;
+    presets[selected]->enable();
 }
