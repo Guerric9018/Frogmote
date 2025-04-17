@@ -27,6 +27,15 @@ Preset::Preset(QWidget *parent, QWidget *content_widget, QGridLayout *layout, un
 
     animation->setDuration(150);
     animation->setEasingCurve(QEasingCurve::OutQuad);
+
+    addCardButton = new QPushButton(card_container);
+    addCardButton->setIcon(QIcon(":/res/plus_button.png"));
+    addCardButton->setIconSize(QSize( 64, 64 ));
+    addCardButton->setStyleSheet("background-color: transparent; border: none;");
+    connect(addCardButton, &QPushButton::clicked, this, &Preset::onAddCardClicked);
+
+    addCardButton->hide();
+    addCardButton->setParent(card_container);
 }
 
 void Preset::enable()
@@ -38,18 +47,38 @@ void Preset::enable()
         auto card = new Card(card_container, &cards[i]);
         layout->addWidget(card, i / 2, i % 2, Qt::AlignTop | Qt::AlignLeft);
     }
+
+    int row = (cards.size() + 1) / 2;
+
+    layout->addWidget(
+        addCardButton,
+        row,      // grid row
+        0,        // start at column 0
+        1,        // rowSpan = 1
+        2,        // colSpan = 2
+        Qt::AlignCenter
+        );
+    addCardButton->show();
+
     actionController->updateData(&cards);
 }
 
 void Preset::disable()
 {
-    QIcon icon(":/res/preset_" + QString::number(index + 1) + ".png");
-    setIcon(icon);
+    setIcon(QIcon(":/res/preset_" + QString::number(index + 1) + ".png"));
     setIconSize(size());
-    for (QLayoutItem *item; (item = layout->takeAt(0)); ) {
-        delete item->widget();
+
+    QLayoutItem *item = nullptr;
+    while ((item = layout->takeAt(0))) {
+        QWidget *w = item->widget();
+        delete item;
+        if (w && w != addCardButton)
+            delete w;
     }
+
+    addCardButton->hide();
 }
+
 
 void Preset::showEvent(QShowEvent *event)
 {
@@ -90,4 +119,26 @@ void Preset::resizeEvent(QResizeEvent *event)
 {
     QPushButton::resizeEvent(event);
     setIconSize(event->size());
+}
+
+void Preset::onAddCardClicked()
+{
+    cards.emplace_back(Card::data{ NO_GESTURE, NO_ACTION });
+    auto newCard = new Card(card_container, &cards.back());
+    int idx = cards.size() - 1;
+    int row = idx / 2, col = idx % 2;
+    layout->addWidget(newCard,
+                      row, col,
+                      Qt::AlignTop | Qt::AlignLeft);
+
+    int buttonRow = (cards.size() + 1) / 2;
+    layout->addWidget(addCardButton,
+                      buttonRow,
+                      0,
+                      1,
+                      2,
+                      Qt::AlignCenter);
+    addCardButton->show();
+
+    actionController->updateData(&cards);
 }

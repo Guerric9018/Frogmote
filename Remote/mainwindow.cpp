@@ -85,6 +85,8 @@ MainWindow::MainWindow(QWidget *parent)
     scrollArea->setWidget(contentWidget);
     auto gridLayout = new QGridLayout();
     gridLayout->setVerticalSpacing(15);
+    gridLayout->setColumnStretch(0, 1);
+    gridLayout->setColumnStretch(1, 1);
     contentWidget->setLayout(gridLayout);
 
 
