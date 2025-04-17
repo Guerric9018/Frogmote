@@ -6,6 +6,7 @@
 #include <QDebug>
 
 #include "notifiablewindows.h"
+#include "notifiabledummy.h"
 
 UrlCheckMark::UrlCheckMark(QWidget *parent)
     : QWidget(parent)
