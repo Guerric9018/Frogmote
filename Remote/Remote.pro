@@ -4,18 +4,21 @@ greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
 CONFIG += c++17
 
+TARGET = Frogmote
+
 # You can make your code fail to compile if it uses deprecated APIs.
 # In order to do so, uncomment the following line.
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
+    actioncontroller.cpp \
+    actioncontrollerwindows.cpp \
     card.cpp \
     client.cpp \
+    gesturehandler.cpp \
     main.cpp \
     mainwindow.cpp \
     notifiable.cpp \
-    notifiabledummy.cpp \
-    notifiablewindows.cpp \
     preset.cpp \
     settingsbutton.cpp \
     urlbar.cpp \
@@ -23,11 +26,12 @@ SOURCES += \
     urltextedit.cpp
 
 HEADERS += \
+    actioncontroller.h \
+    actioncontrollerwindows.h \
     card.h \
+    gesturehandler.h \
     mainwindow.h \
     notifiable.h \
-    notifiabledummy.h \
-    notifiablewindows.h \
     preset.h \
     settingsbutton.h \
     urlbar.h \

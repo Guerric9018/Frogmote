@@ -4,10 +4,16 @@
 #include <QJsonArray>
 #include <cctype>
 
-Client::Client()
+#include "actioncontrollerwindows.h"
+#include <QWidget>
+Client::Client(Notifiable *output)
     : ws(nullptr)
     , epoch(0)
+    , output(output)
 {
+    gestureHandler = new GestureHandler(this);
+    actionController = new ActionControllerWindows((Notifiable*) output);
+    connect(gestureHandler, &GestureHandler::gestureDetected, actionController, &ActionController::actionDispatch);
     qDebug() << "[WebSocket] Created";
 }
 
@@ -67,13 +73,12 @@ void Client::onMessage(QString msg)
         num_sent
     };
     int sent_mask = 0, expected_mask = (1 << num_sent) - 1;
-    auto out = qDebug().nospace();
+
+    gestureHandler->processData(json);
 
     if (const auto v = json["values"]; v.isArray()) {
         if (const auto values = v.toArray(); values.size() == 3) {
-            out << "[WebSocket.values] ";
             for (qsizetype i = 0; i < 3; ++i) {
-                out << "xyz"[i] << '=' << values[i].toDouble(std::nan("")) << ',' << ' ';
             }
             sent_mask |= 1 << sent_values;
         }
@@ -84,7 +89,6 @@ void Client::onMessage(QString msg)
         if (!epoch) {
             epoch = value;
         }
-        out << "[WebSocket.timestamp] " << float(value - epoch) / 1e6 << "ms";
         sent_mask |= 1 << sent_timestamp;
     }
 

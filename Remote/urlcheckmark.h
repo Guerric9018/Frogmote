@@ -8,7 +8,7 @@ class UrlCheckMark: public QWidget
 {
     Q_OBJECT
 public:
-    UrlCheckMark(QWidget *parent);
+    UrlCheckMark(QWidget *parent, Notifiable *output);
     void updateState(bool validate);
 private:
     QPixmap backgroundPixmap;

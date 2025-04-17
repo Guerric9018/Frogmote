@@ -5,12 +5,9 @@
 
 #include <QDebug>
 
-#include "notifiablewindows.h"
-#include "notifiabledummy.h"
-
-UrlCheckMark::UrlCheckMark(QWidget *parent)
+UrlCheckMark::UrlCheckMark(QWidget *parent, Notifiable *output)
     : QWidget(parent)
-    , output(std::make_unique<NotifiableWindows>(this))
+    , output(output)
 {
     backgroundPixmap = QPixmap(":/res/dots.png");
     setFixedSize(35, 35);
@@ -29,7 +26,6 @@ void UrlCheckMark::paintEvent(QPaintEvent *event)
 
 void UrlCheckMark::updateState(bool validate)
 {
-    qDebug() << validate;
     if (validate) {
         backgroundPixmap = QPixmap(":/res/url_checkmark.png");
         if (backgroundPixmap.isNull()) {

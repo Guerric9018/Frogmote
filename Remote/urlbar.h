@@ -10,7 +10,7 @@ class UrlBar: public QWidget
 {
     Q_OBJECT
 public:
-    UrlBar(QWidget *parent);
+    UrlBar(QWidget *parent, Notifiable *output, Client *client);
 private:
     QPixmap backgroundPixmap;
     UrlCheckMark *urlCheckMark;

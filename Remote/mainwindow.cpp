@@ -10,17 +10,29 @@
 #include <QVBoxLayout>
 #include <QGridLayout>
 #include <QScrollArea>
+#include <QSplashScreen>
+
+#include "notifiable.h"
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
-    , presets(4)
+    , notifiable(this)
+    , client(&notifiable)
     , selected(0)
+    , presets(4)
 {
     ui->setupUi(this);
 
+    // Splash Screen
+    QPixmap pixmap(":/res/splash_screen.png");
+    pixmap = pixmap.scaled(QSize(300, 300), Qt::KeepAspectRatio, Qt::SmoothTransformation);
+    QSplashScreen splash(pixmap);
+    splash.show();
+
     setFixedSize(750, 550);
-    setWindowTitle("Remote Desktop");
+    setWindowTitle("Frogmote");
+    setWindowIcon(QIcon(":/res/logo.png"));
 
     // Background color
     setStyleSheet("background-color: rgb(201, 247, 192);");
@@ -44,7 +56,7 @@ MainWindow::MainWindow(QWidget *parent)
     topLayout->addWidget(left_margin);
 
     // Url
-    UrlBar *textEdit = new UrlBar(this);
+    UrlBar *textEdit = new UrlBar(this, &notifiable, &client);
     topLayout->addWidget(textEdit);
 
     // Settings

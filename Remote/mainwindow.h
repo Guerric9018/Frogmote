@@ -21,6 +21,7 @@ public:
 
 private:
     Ui::MainWindow *ui;
+    Notifiable notifiable;
     Client client;
     size_t selected;
     std::vector<std::unique_ptr<Preset>> presets;

@@ -4,15 +4,16 @@
 #include <QHBoxLayout>
 #include <QLabel>
 #include "urltextedit.h"
+#include "notifiable.h"
 
-UrlBar::UrlBar(QWidget *parent): QWidget(parent) {
+UrlBar::UrlBar(QWidget *parent, Notifiable *output, Client *client): QWidget(parent), client(client) {
     setFixedSize(500, 50);
 
     QHBoxLayout *layout = new QHBoxLayout;
     this->setLayout(layout);
     layout->setSpacing(10);
 
-    urlCheckMark = new UrlCheckMark(this);
+    urlCheckMark = new UrlCheckMark(this, output);
     layout->addWidget(urlCheckMark);
 
     urlTextEdit = new UrlTextEdit(this);
@@ -22,7 +23,6 @@ UrlBar::UrlBar(QWidget *parent): QWidget(parent) {
     connect(urlTextEdit, &QLineEdit::editingFinished,
             this, &UrlBar::urlEdited);
 
-    client = new Client();
     connect(client, &Client::connectionStatusChanged,
             urlCheckMark, &UrlCheckMark::updateState);
 
