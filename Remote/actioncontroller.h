@@ -1,7 +1,7 @@
 #ifndef ACTIONCONTROLLER_H
 #define ACTIONCONTROLLER_H
 
-#include "gesturehandler.h"
+#include "gestures.h"
 
 #include <QObject>
 
@@ -15,7 +15,7 @@ public:
     virtual void mute() = 0;
     virtual ~ActionController() {};
 public slots:
-    void actionDispatch(GestureHandler::Code code);
+    void actionDispatch(Gesture gesture);
 };
 
 #endif // ACTIONCONTROLLER_H
