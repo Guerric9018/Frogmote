@@ -1,10 +1,11 @@
 #include "preset.h"
 
-Preset::Preset(QWidget *parent, QWidget *content_widget, QGridLayout *layout, unsigned int index)
+Preset::Preset(QWidget *parent, QWidget *content_widget, QGridLayout *layout, unsigned int index, const std::vector<Card::data> &cards)
     : QPushButton(parent)
     , index(index)
     , card_container(content_widget)
     , layout(layout)
+    , cards(cards)
     , animation(new QPropertyAnimation(this, "geometry", this))
     , geometry_initialized(false)
     , scale_factor(1.1)
@@ -16,11 +17,6 @@ Preset::Preset(QWidget *parent, QWidget *content_widget, QGridLayout *layout, un
 
     int fixedWidth = 60;
     int calculatedHeight = int(fixedWidth * aspectRatio);
-    // TODO: load from file
-    for (int i = 0; i < 2+3*index; ++i) {
-        cards.emplace_back(Card::data{i+int(index)*100+100});
-    //         cards.emplace_back({i+index*100+100});
-    }
 
     resize(fixedWidth, calculatedHeight);
     setMinimumSize(fixedWidth, calculatedHeight);
@@ -30,11 +26,6 @@ Preset::Preset(QWidget *parent, QWidget *content_widget, QGridLayout *layout, un
 
     animation->setDuration(150);
     animation->setEasingCurve(QEasingCurve::OutQuad);
-}
-
-// TODO: save to file
-Preset::~Preset()
-{
 }
 
 void Preset::enable()

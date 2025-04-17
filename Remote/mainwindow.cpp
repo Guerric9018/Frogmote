@@ -87,7 +87,7 @@ MainWindow::MainWindow(QWidget *parent)
     contentWidget->setLayout(gridLayout);
 
     for (int i = 4-1; i >= 0; --i) {
-        presets[i] = std::make_unique<Preset>(presetsContainer, contentWidget, gridLayout, i);
+        presets[i] = std::make_unique<Preset>(presetsContainer, contentWidget, gridLayout, i, load_presets.view(i));
         auto preset = presets[i].get();
         int yOffset = i * 90;
         if (i == 0) yOffset += 20;

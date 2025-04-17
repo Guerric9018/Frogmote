@@ -16,6 +16,7 @@ SOURCES += \
     card.cpp \
     client.cpp \
     gesturehandler.cpp \
+    loadpresets.cpp \
     main.cpp \
     mainwindow.cpp \
     notifiable.cpp \
@@ -31,6 +32,7 @@ HEADERS += \
     actions.h \
     card.h \
     gesturehandler.h \
+    loadpresets.h \
     gestures.h \
     mainwindow.h \
     notifiable.h \

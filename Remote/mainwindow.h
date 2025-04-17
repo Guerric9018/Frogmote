@@ -4,6 +4,7 @@
 #include <QMainWindow>
 #include "client.h"
 #include "preset.h"
+#include "loadpresets.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui {
@@ -24,6 +25,7 @@ private:
     Notifiable notifiable;
     Client client;
     size_t selected;
+    LoadPresets load_presets;
     std::vector<std::unique_ptr<Preset>> presets;
 
     void selectPreset(size_t i);
