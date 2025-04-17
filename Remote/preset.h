@@ -11,7 +11,7 @@
 class Preset : public QPushButton
 {
 public:
-    Preset(QWidget *parent, QWidget *content_widget, QGridLayout *layout, unsigned int index, const std::vector<Card::data> &cards);
+    Preset(QWidget *parent, QWidget *content_widget, QGridLayout *layout, unsigned int index, std::vector<Card::data> &cards);
     void enable();
     void disable();
 
@@ -19,7 +19,7 @@ private:
     unsigned int index;
     QWidget *card_container;
     QGridLayout *layout;
-    const std::vector<Card::data> &cards;
+    std::vector<Card::data> &cards;
 
     void showEvent(QShowEvent *event) override;
     void enterEvent(QEnterEvent *event) override;

@@ -2,6 +2,7 @@
 #define GESTURES_H
 
 enum Gesture {
+    NO_GESTURE,
     RIGHTWARD_SWIPE,
     LEFTWARD_SWIPE,
     UPWARD_SWIPE,

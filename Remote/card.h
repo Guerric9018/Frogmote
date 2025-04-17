@@ -4,29 +4,34 @@
 #include <QObject>
 #include <QWidget>
 
+#include "gestures.h"
+#include "actions.h"
+
 class Card : public QWidget
 {
     Q_OBJECT
 public:
     struct data
     {
-        int gesture;
-        int action;
+        Gesture gesture;
+        Action action;
     };
 
-    explicit Card(QWidget *parent = nullptr, data d = {});
+    explicit Card(QWidget *parent = nullptr, data *d = nullptr);
 
     data getData() const;
 
 private:
     QPixmap backgroundPixmap;
-    data data_;
+    data *data_;
 
     QWidget gestureImage;
     QWidget actionImage;
 
     void paintEvent(QPaintEvent*) override;
-signals:
+private slots:
+    void gestureChanged(int gesture);
+    void actionChanged(int action);
 };
 
 #endif // CARD_H

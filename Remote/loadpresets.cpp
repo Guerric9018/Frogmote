@@ -29,7 +29,7 @@ LoadPresets::LoadPresets()
             char *at = line.data();
             int gesture = strtoul(at, &at, 10);
             int action = strtoul(at, &at, 10);
-            all_cards[i_preset].emplace_back(Card::data{ gesture, action });
+            all_cards[i_preset].emplace_back(Card::data{ (Gesture) gesture, (Action) action });
         }
     }
     save.close();
@@ -50,7 +50,7 @@ LoadPresets::~LoadPresets()
     save.close();
 }
 
-const std::vector<Card::data> &LoadPresets::view(size_t preset)
+std::vector<Card::data> &LoadPresets::view(size_t preset)
 {
     return all_cards[preset];
 }

@@ -1,7 +1,8 @@
 #ifndef ACTIONS_H
 #define ACTIONS_H
 
-enum Actions {
+enum Action {
+    NO_ACTION,
     PLAY,
     MUTE,
     BACKWARD,

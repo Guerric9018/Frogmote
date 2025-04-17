@@ -1,6 +1,6 @@
 #include "preset.h"
 
-Preset::Preset(QWidget *parent, QWidget *content_widget, QGridLayout *layout, unsigned int index, const std::vector<Card::data> &cards)
+Preset::Preset(QWidget *parent, QWidget *content_widget, QGridLayout *layout, unsigned int index, std::vector<Card::data> &cards)
     : QPushButton(parent)
     , index(index)
     , card_container(content_widget)
@@ -34,7 +34,7 @@ void Preset::enable()
     setIcon(icon);
     setIconSize(size());
     for (size_t i = 0; i < cards.size(); ++i) {
-        auto card = new Card(card_container, cards[i]);
+        auto card = new Card(card_container, &cards[i]);
         layout->addWidget(card, i / 2, i % 2, Qt::AlignTop | Qt::AlignLeft);
     }
 }

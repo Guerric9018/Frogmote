@@ -5,7 +5,7 @@
 #include <QHBoxLayout>
 #include <QComboBox>
 
-Card::Card(QWidget *parent, data d)
+Card::Card(QWidget *parent, data *d)
     : QWidget{parent}, data_{d}
 {
     backgroundPixmap = QPixmap(":/res/card_frame.png");
@@ -23,7 +23,6 @@ Card::Card(QWidget *parent, data d)
     main_layout->addLayout(image_layout);
 
     QString dropdown_stylesheet = R"(
-    /* Le QComboBox lui‑même */
     QComboBox {
         background-color: white;
         color: black;
@@ -48,6 +47,12 @@ Card::Card(QWidget *parent, data d)
                            "Go forward", "Previous track", "Next track", "Screenshot"};
     gesture_dropdown->addItems(gestures);
     action_dropdown->addItems(actions);
+
+    if (data_->gesture != NO_GESTURE) gesture_dropdown->setCurrentIndex(data_->gesture - 1);
+    if (data_->action != NO_ACTION) action_dropdown->setCurrentIndex(data_->action - 1);
+
+    connect(gesture_dropdown, &QComboBox::currentIndexChanged, this, &Card::gestureChanged);
+    connect(action_dropdown, &QComboBox::currentIndexChanged, this, &Card::actionChanged);
 
     dropdown_layout->addWidget(gesture_dropdown);
     dropdown_layout->addWidget(action_dropdown);
@@ -75,5 +80,13 @@ void Card::paintEvent(QPaintEvent *event)
 
 Card::data Card::getData() const
 {
-    return data_;
+    return *data_;
+}
+
+void Card::gestureChanged(int gesture) {
+    data_->gesture = (Gesture) gesture;
+}
+
+void Card::actionChanged(int action) {
+    data_->action = (Action) action;
 }
