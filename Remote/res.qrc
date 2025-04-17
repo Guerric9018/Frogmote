@@ -17,5 +17,17 @@
         <file>res/preset_selected_2.png</file>
         <file>res/preset_selected_3.png</file>
         <file>res/preset_selected_4.png</file>
+        <file>res/gesture_1.png</file>
+        <file>res/gesture_2.png</file>
+        <file>res/gesture_3.png</file>
+        <file>res/gesture_4.png</file>
+        <file>res/action_1.png</file>
+        <file>res/action_2.png</file>
+        <file>res/action_3.png</file>
+        <file>res/action_4.png</file>
+        <file>res/action_5.png</file>
+        <file>res/action_6.png</file>
+        <file>res/action_7.png</file>
+        <file>res/dropdown_arrow.png</file>
     </qresource>
 </RCC>

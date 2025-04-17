@@ -3,6 +3,7 @@
 
 #include <QObject>
 #include <QWidget>
+#include <QLabel>
 
 #include "gestures.h"
 #include "actions.h"
@@ -25,8 +26,8 @@ private:
     QPixmap backgroundPixmap;
     data *data_;
 
-    QWidget gestureImage;
-    QWidget actionImage;
+    QLabel *gesture_label;
+    QLabel *action_label;
 
     void paintEvent(QPaintEvent*) override;
 private slots:

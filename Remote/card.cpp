@@ -22,18 +22,63 @@ Card::Card(QWidget *parent, data *d)
     QHBoxLayout *image_layout = new QHBoxLayout(this);
     main_layout->addLayout(image_layout);
 
-    QString dropdown_stylesheet = R"(
-    QComboBox {
-        background-color: white;
-        color: black;
-    }
+    gesture_label = new QLabel(this);
+    gesture_label->setFixedSize(96, 96);
+    gesture_label->setStyleSheet("QLabel { background-color: transparent; }");
+    if(data_->gesture != NO_GESTURE)
+        gesture_label->setPixmap(QPixmap(
+                                     QString(":/res/gesture_%1.png").arg(data_->gesture)
+                                     ).scaled(gesture_label->size(), Qt::KeepAspectRatio, Qt::SmoothTransformation));
 
-    QComboBox QAbstractItemView {
-        background-color: white;
-        color: black;
-        selection-color: black;
-    }
+    action_label = new QLabel(this);
+    action_label->setFixedSize(96, 96);
+    action_label->setStyleSheet("QLabel { background-color: transparent; }");
+    if(data_->action != NO_ACTION)
+        action_label->setPixmap(QPixmap(
+                                    QString(":/res/action_%1.png").arg(data_->action)
+                                    ).scaled(action_label->size(), Qt::KeepAspectRatio, Qt::SmoothTransformation));
+
+    image_layout->addWidget(gesture_label);
+    image_layout->addWidget(action_label);
+    image_layout->setSpacing(20);
+    image_layout->setContentsMargins(10, 5, 10, 5);
+
+    QString dropdown_stylesheet = R"(
+        QComboBox {
+            background-color: #E9FFE9;
+            color: #333;
+            border: 2px solid #6DA06F;
+            border-radius: 8px;
+            padding: 3px 5px;
+            font-size: 10px;
+        }
+
+        QComboBox:hover {
+            background-color: #D8FAD8;
+        }
+
+        QComboBox::drop-down {
+            border-left: 1px solid #6DA06F;
+            width: 25px;
+        }
+
+        QComboBox QAbstractItemView {
+            background-color: #FFFFFF;
+            color: #333;
+            selection-background-color: #C4F4C4;
+            selection-color: black;
+            border: 1px solid #6DA06F;
+            border-radius: 6px;
+            padding: 5px;
+        }
+
+        QComboBox::down-arrow {
+            image: url(:/res/dropdown_arrow.png);
+            width: 12px;
+            height: 12px;
+        }
     )";
+
 
     QComboBox *gesture_dropdown = new QComboBox(this);
     gesture_dropdown->setStyleSheet(dropdown_stylesheet);
@@ -85,8 +130,14 @@ Card::data Card::getData() const
 
 void Card::gestureChanged(int gesture) {
     data_->gesture = (Gesture) (gesture + 1);
+    gesture_label->setPixmap(QPixmap(
+                                 QString(":/res/gesture_%1.png").arg(data_->gesture)
+                                 ).scaled(gesture_label->size(), Qt::KeepAspectRatio, Qt::SmoothTransformation));
 }
 
 void Card::actionChanged(int action) {
     data_->action = (Action) (action + 1);
+    action_label->setPixmap(QPixmap(
+                                QString(":/res/action_%1.png").arg(data_->action)
+                                ).scaled(action_label->size(), Qt::KeepAspectRatio, Qt::SmoothTransformation));
 }
