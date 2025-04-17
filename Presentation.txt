@@ -1,10 +1,13 @@
-Fichier dans lequel on va bullshit. 
-Contexte du projet :
+Project Context :
 
-Motivations du projet :
+Project Motivation :
+* One of the main points of this project is to enable its users to accomplish simple tasks on their computer without having to interact with the keyboard or the mouse. It makes it possible to use it while your hands are dirty, when you are far from the computer, or for people who struggle to use the mouse and keyboard because of various reasons.
+* It would only require some memorization to use, and the user would only need to remember the gestures they want to use.
+* Another strong point is to have one common piece of software that can be used to emulate an amount of gadgets like a pointer for slides or a remote.
 
-The design Process :
-
+The Design Process :
+* We tried to think about the archetypes we were targeting, and it ended up being people who are slightly older and maybe don't have a lot of experience with computers. So, we decided to make a friendly interface with as little clutter as possible and little room for errors. We also opted for a friendly color theme but we kept in mind accessibility by keeping strong value contrast.
+* With our target audience in mind, we also decided that the application should feel responsive. That being said, it should not be overwhelming so the animations are kept to their minimum.
 
 - explain the design process, describe the planned interface and the differences from the implemented interface.
 - present the prototype (with a short demo)
