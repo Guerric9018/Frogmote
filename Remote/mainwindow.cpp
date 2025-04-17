@@ -10,6 +10,7 @@
 #include <QVBoxLayout>
 #include <QGridLayout>
 #include <QScrollArea>
+#include <QSplashScreen>
 
 #include "notifiable.h"
 
@@ -21,6 +22,12 @@ MainWindow::MainWindow(QWidget *parent)
     client = new Client(notifiable);
 
     ui->setupUi(this);
+
+    // Splash Screen
+    QPixmap pixmap(":/res/splash_screen.png");
+    pixmap = pixmap.scaled(QSize(300, 300), Qt::KeepAspectRatio, Qt::SmoothTransformation);
+    QSplashScreen splash(pixmap);
+    splash.show();
 
     setFixedSize(750, 550);
     setWindowTitle("Frogmote");

@@ -12,5 +12,6 @@
         <file>res/info_icon.png</file>
         <file>res/info_icon.ico</file>
         <file>res/logo.png</file>
+        <file>res/splash_screen.png</file>
     </qresource>
 </RCC>
