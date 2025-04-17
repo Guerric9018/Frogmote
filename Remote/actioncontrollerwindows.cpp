@@ -20,7 +20,7 @@ void ActionControllerWindows::mute() {
 }
 
 void ActionControllerWindows::backward() {
-    qDebug() << "MUTE";
+    qDebug() << "BACKWARD";
     output->notify("", "Backward", "Backward gesture detected");
     keybd_event(VK_LEFT, 0, 0, 0);               // Key down
     keybd_event(VK_LEFT, 0, KEYEVENTF_KEYUP, 0); // Key up
@@ -28,7 +28,7 @@ void ActionControllerWindows::backward() {
 }
 
 void ActionControllerWindows::forward() {
-    qDebug() << "MUTE";
+    qDebug() << "FORWARD";
     output->notify("", "Forward", "Backward gesture detected");
     keybd_event(VK_RIGHT, 0, 0, 0);               // Key down
     keybd_event(VK_RIGHT, 0, KEYEVENTF_KEYUP, 0); // Key up
