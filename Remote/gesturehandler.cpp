@@ -71,11 +71,11 @@ void GestureHandler::handleCompletion(QVector3D diff){
     float abs_z = std::abs(diff.z());
 
     if (abs_x >= abs_y && abs_x >= abs_z) {
-        if(diff.x() >= 0) emit gestureDetected(GestureHandler::UPWARD_SWIPE);
-        else emit gestureDetected(GestureHandler::UPWARD_SWIPE);
-    }
-    else if (abs_y >= abs_x && abs_y >= abs_z) {
         if(diff.x() >= 0) emit gestureDetected(GestureHandler::RIGHTWARD_SWIPE);
         else emit gestureDetected(GestureHandler::LEFTWARD_SWIPE);
+    }
+    else if (abs_y >= abs_x && abs_y >= abs_z) {
+        if(diff.y() >= 0) emit gestureDetected(GestureHandler::DOWNWARD_SWIPE);
+        else emit gestureDetected(GestureHandler::UPWARD_SWIPE);
     }
 }

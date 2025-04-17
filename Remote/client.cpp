@@ -4,12 +4,15 @@
 #include <QJsonArray>
 #include <cctype>
 
+#include "actioncontrollerwindows.h"
+#include <QWidget>
 Client::Client()
     : ws(nullptr)
     , epoch(0)
 {
     gestureHandler = new GestureHandler(this);
-    connect(gestureHandler, &GestureHandler::gestureDetected, this, [](int code) { qDebug() << "Code: " << code; });
+    actionController = new ActionControllerWindows((QWidget*) this);
+    connect(gestureHandler, &GestureHandler::gestureDetected, actionController, &ActionController::actionDispatch);
     qDebug() << "[WebSocket] Created";
 }
 

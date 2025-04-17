@@ -2,6 +2,8 @@
 #define CLIENT_H
 
 #include "gesturehandler.h"
+#include "actioncontroller.h"
+
 #include <QWebSocket>
 
 class Client : public QObject
@@ -16,6 +18,7 @@ private:
     std::uint64_t epoch;
 
     GestureHandler *gestureHandler;
+    ActionController *actionController;
 
     void onConnect();
     void onDisconnect();

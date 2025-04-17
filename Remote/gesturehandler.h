@@ -13,19 +13,19 @@ class GestureHandler : public QObject
 public:
     GestureHandler(QObject *parent = nullptr);
     void processData(const QJsonObject &data);
-private:
-    enum State {
-        STANDBY,
-        WAITING,
-        GESTURING,
-        END
-    };
 
     enum Code {
         RIGHTWARD_SWIPE,
         LEFTWARD_SWIPE,
         UPWARD_SWIPE,
         DOWNWARD_SWIPE
+    };
+private:
+    enum State {
+        STANDBY,
+        WAITING,
+        GESTURING,
+        END
     };
 
     void handleCompletion(QVector3D diff);
@@ -44,7 +44,7 @@ private:
     const int NO_ROTATION_THRESHOLD = 10;
 
 signals:
-    void gestureDetected(int code);
+    void gestureDetected(Code code);
 };
 
 #endif // GESTUREHANDLER_H

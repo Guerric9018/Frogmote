@@ -8,6 +8,7 @@
 
 class ActionControllerWindows : public ActionController
 {
+    Q_OBJECT
 public:
     explicit ActionControllerWindows(QWidget *parent);
     virtual ~ActionControllerWindows() override {};
