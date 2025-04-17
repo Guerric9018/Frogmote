@@ -4,6 +4,7 @@
 #include "gesturehandler.h"
 #include "actioncontroller.h"
 #include "notifiable.h"
+#include "gestures.h"
 
 #include <QWebSocket>
 
@@ -28,6 +29,7 @@ private:
 
 signals:
     void connectionStatusChanged(bool connected);
+    void gestureDetected(Gesture gesture);
 };
 
 #endif // CLIENT_H

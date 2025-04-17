@@ -1,11 +1,12 @@
 #include "preset.h"
 
-Preset::Preset(QWidget *parent, QWidget *content_widget, QGridLayout *layout, unsigned int index, std::vector<Card::data> &cards)
+Preset::Preset(QWidget *parent, QWidget *content_widget, QGridLayout *layout, unsigned int index, std::vector<Card::data> &cards, ActionController *actionController)
     : QPushButton(parent)
     , index(index)
     , card_container(content_widget)
     , layout(layout)
     , cards(cards)
+    , actionController(actionController)
     , animation(new QPropertyAnimation(this, "geometry", this))
     , geometry_initialized(false)
     , scale_factor(1.1)
@@ -37,6 +38,7 @@ void Preset::enable()
         auto card = new Card(card_container, &cards[i]);
         layout->addWidget(card, i / 2, i % 2, Qt::AlignTop | Qt::AlignLeft);
     }
+    actionController->updateData(&cards);
 }
 
 void Preset::disable()

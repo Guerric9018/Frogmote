@@ -12,8 +12,7 @@ Client::Client(Notifiable *output)
     , output(output)
 {
     gestureHandler = new GestureHandler(this);
-    actionController = new ActionControllerWindows((Notifiable*) output);
-    connect(gestureHandler, &GestureHandler::gestureDetected, actionController, &ActionController::actionDispatch);
+    connect(gestureHandler, &GestureHandler::gestureDetected, this, &Client::gestureDetected);
     qDebug() << "[WebSocket] Created";
 }
 

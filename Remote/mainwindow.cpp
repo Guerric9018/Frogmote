@@ -3,6 +3,7 @@
 #include "urlbar.h"
 #include "settingsbutton.h"
 #include "preset.h"
+#include "actioncontrollerwindows.h"
 
 #include <QLabel>
 #include <QHBoxLayout>
@@ -86,8 +87,12 @@ MainWindow::MainWindow(QWidget *parent)
     gridLayout->setVerticalSpacing(15);
     contentWidget->setLayout(gridLayout);
 
+
+    ActionControllerWindows *actionController = new ActionControllerWindows(&notifiable, nullptr);
+    connect(&client, &Client::gestureDetected, actionController, &ActionControllerWindows::actionDispatch);
+
     for (int i = 4-1; i >= 0; --i) {
-        presets[i] = std::make_unique<Preset>(presetsContainer, contentWidget, gridLayout, i, load_presets.view(i));
+        presets[i] = std::make_unique<Preset>(presetsContainer, contentWidget, gridLayout, i, load_presets.view(i), actionController);
         auto preset = presets[i].get();
         int yOffset = i * 90;
         if (i == 0) yOffset += 20;

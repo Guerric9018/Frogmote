@@ -36,7 +36,7 @@ private:
     int rotation_periods = 0;
     int no_rotation_periods = 0;
 
-    const int ROTATION_THRESHOLD = 2;
+    const int ROTATION_THRESHOLD = 3;
     const int NO_ROTATION_THRESHOLD = 10;
 
 signals:

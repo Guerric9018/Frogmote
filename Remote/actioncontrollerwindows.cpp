@@ -7,8 +7,10 @@
 #include <QPixmap>
 #include <QDateTime>
 
-ActionControllerWindows::ActionControllerWindows(Notifiable *output):
-    output(output) {}
+ActionControllerWindows::ActionControllerWindows(Notifiable *output, std::vector<Card::data> *cards):
+    output(output)
+    ,cards(cards)
+{}
 
 void ActionControllerWindows::play() {
     qDebug() << "PLAY";
@@ -63,4 +65,37 @@ void ActionControllerWindows::screenshot() {
     qDebug() << "Screenshot saved to" << filename;
 
     output->notify("", "Screenshot", "Screenshot saved to " + filename);
+}
+
+void ActionControllerWindows::actionDispatch(Gesture gesture) {
+    Action action = NO_ACTION;
+    for (Card::data temp_gesture : *cards){
+        if (temp_gesture.gesture == gesture) action = temp_gesture.action;
+    }
+
+    switch (action) {
+        case PLAY:
+            play();
+            break;
+        case MUTE:
+            mute();
+            break;
+        case BACKWARD:
+            backward();
+            break;
+        case FORWARD:
+            forward();
+        case PREVIOUS:
+            previous();
+        case NEXT:
+            next();
+        case SCREENSHOT:
+            screenshot();
+        default:
+            break;
+        }
+}
+
+void ActionControllerWindows::updateData(std::vector<Card::data> *cards) {
+    this->cards = cards;
 }

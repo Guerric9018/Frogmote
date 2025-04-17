@@ -9,7 +9,7 @@ enum Action {
     FORWARD,
     PREVIOUS,
     NEXT,
-    ALT_TAB
+    SCREENSHOT
 };
 
 #endif // ACTIONS_H

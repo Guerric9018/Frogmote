@@ -7,19 +7,21 @@
 #include <QPropertyAnimation>
 #include <QResizeEvent>
 #include "card.h"
+#include "actioncontroller.h"
 
 class Preset : public QPushButton
 {
 public:
-    Preset(QWidget *parent, QWidget *content_widget, QGridLayout *layout, unsigned int index, std::vector<Card::data> &cards);
+    Preset(QWidget *parent, QWidget *content_widget, QGridLayout *layout, unsigned int index, std::vector<Card::data> &cards, ActionController *actionController);
     void enable();
     void disable();
+    std::vector<Card::data> &cards;
 
 private:
     unsigned int index;
     QWidget *card_container;
     QGridLayout *layout;
-    std::vector<Card::data> &cards;
+    ActionController *actionController;
 
     void showEvent(QShowEvent *event) override;
     void enterEvent(QEnterEvent *event) override;
