@@ -22,6 +22,9 @@ private:
     QPixmap backgroundPixmap;
     data data_;
 
+    QWidget gestureImage;
+    QWidget actionImage;
+
     void paintEvent(QPaintEvent*) override;
 signals:
 };
