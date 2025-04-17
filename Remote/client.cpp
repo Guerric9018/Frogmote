@@ -6,12 +6,13 @@
 
 #include "actioncontrollerwindows.h"
 #include <QWidget>
-Client::Client()
+Client::Client(Notifiable *output)
     : ws(nullptr)
     , epoch(0)
+    , output(output)
 {
     gestureHandler = new GestureHandler(this);
-    actionController = new ActionControllerWindows((QWidget*) this);
+    actionController = new ActionControllerWindows((Notifiable*) output);
     connect(gestureHandler, &GestureHandler::gestureDetected, actionController, &ActionController::actionDispatch);
     qDebug() << "[WebSocket] Created";
 }

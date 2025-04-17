@@ -17,8 +17,6 @@ SOURCES += \
     main.cpp \
     mainwindow.cpp \
     notifiable.cpp \
-    notifiabledummy.cpp \
-    notifiablewindows.cpp \
     preset.cpp \
     settingsbutton.cpp \
     urlbar.cpp \
@@ -32,8 +30,6 @@ HEADERS += \
     gesturehandler.h \
     mainwindow.h \
     notifiable.h \
-    notifiabledummy.h \
-    notifiablewindows.h \
     preset.h \
     settingsbutton.h \
     urlbar.h \

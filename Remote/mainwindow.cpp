@@ -11,10 +11,15 @@
 #include <QGridLayout>
 #include <QScrollArea>
 
+#include "notifiable.h"
+
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
 {
+    Notifiable *notifiable = new Notifiable(this);
+    client = new Client(notifiable);
+
     ui->setupUi(this);
 
     setFixedSize(750, 550);
@@ -42,7 +47,7 @@ MainWindow::MainWindow(QWidget *parent)
     topLayout->addWidget(left_margin);
 
     // Url
-    UrlBar *textEdit = new UrlBar(this);
+    UrlBar *textEdit = new UrlBar(this, notifiable, client);
     topLayout->addWidget(textEdit);
 
     // Settings

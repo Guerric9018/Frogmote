@@ -20,6 +20,6 @@ public:
 
 private:
     Ui::MainWindow *ui;
-    Client client;
+    Client *client;
 };
 #endif // MAINWINDOW_H

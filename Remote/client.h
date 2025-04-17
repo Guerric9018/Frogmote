@@ -3,6 +3,7 @@
 
 #include "gesturehandler.h"
 #include "actioncontroller.h"
+#include "notifiable.h"
 
 #include <QWebSocket>
 
@@ -10,7 +11,7 @@ class Client : public QObject
 {
     Q_OBJECT
 public:
-    Client();
+    Client(Notifiable *output);
     ~Client();
     void openConnection(const QString &address);
 private:
@@ -19,6 +20,7 @@ private:
 
     GestureHandler *gestureHandler;
     ActionController *actionController;
+    Notifiable *output;
 
     void onConnect();
     void onDisconnect();
