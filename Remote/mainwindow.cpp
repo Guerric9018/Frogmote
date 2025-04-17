@@ -3,7 +3,6 @@
 #include "urlbar.h"
 #include "settingsbutton.h"
 #include "preset.h"
-#include "card.h"
 
 #include <QLabel>
 #include <QHBoxLayout>
