@@ -2,6 +2,7 @@
 #include <QtWebSockets/QWebSocket>
 #include <QJsonObject>
 #include <QJsonArray>
+#include <cctype>
 
 Client::Client()
     : ws(nullptr)
@@ -26,7 +27,17 @@ void Client::openConnection(const QString &address)
         ws = nullptr;
     }
 
-    QUrl url(address + "/sensor/connect?type=android.sensor.orientation");
+    QString parsed;
+    bool is_number = false;
+    for (const auto src : address) {
+        if (src == '0' && !is_number) {
+            continue;
+        }
+        is_number = src.isDigit();
+        parsed.append(src);
+    }
+
+    QUrl url(parsed + "/sensor/connect?type=android.sensor.orientation");
     ws = new QWebSocket();
     connect(ws, &QWebSocket::connected, this, &Client::onConnect);
     connect(ws, &QWebSocket::disconnected, this, &Client::onDisconnect);
