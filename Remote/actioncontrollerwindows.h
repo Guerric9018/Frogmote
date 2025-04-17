@@ -17,6 +17,9 @@ public:
     virtual void forward() override;
     virtual void backward() override;
     virtual void mute() override;
+    virtual void previous() override;
+    virtual void next() override;
+    virtual void screenshot() override;
 
 private:
     Notifiable *output;
