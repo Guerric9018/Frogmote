@@ -11,5 +11,6 @@
         <file>res/card_frame.png</file>
         <file>res/info_icon.png</file>
         <file>res/info_icon.ico</file>
+        <file>res/logo.png</file>
     </qresource>
 </RCC>

@@ -23,7 +23,8 @@ MainWindow::MainWindow(QWidget *parent)
     ui->setupUi(this);
 
     setFixedSize(750, 550);
-    setWindowTitle("Remote Desktop");
+    setWindowTitle("Frogmote");
+    setWindowIcon(QIcon(":/res/logo.png"));
 
     // Background color
     setStyleSheet("background-color: rgb(201, 247, 192);");

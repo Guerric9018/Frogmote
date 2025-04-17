@@ -63,6 +63,8 @@ void GestureHandler::processData(const QJsonObject &data)
     }
 
     last_value = new_value;
+
+    if (state == BOOTING) state = STANDBY;
 }
 
 void GestureHandler::handleCompletion(QVector3D diff){

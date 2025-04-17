@@ -3,7 +3,7 @@
 Notifiable::Notifiable(QObject *parent)
 {
     trayIcon = new QSystemTrayIcon(parent);
-    trayIcon->setIcon(QIcon(":/res/info_icon.png"));
+    trayIcon->setIcon(QIcon(":/res/logo.png"));
     trayIcon->show();
 }
 

@@ -25,12 +25,13 @@ private:
         STANDBY,
         WAITING,
         GESTURING,
-        END
+        END,
+        BOOTING,
     };
 
     void handleCompletion(QVector3D diff);
 
-    State state = STANDBY;
+    State state = BOOTING;
     QVector3D last_value = {0, 0, 0};
     QVector3D first_value = {0, 0, 0};
 
