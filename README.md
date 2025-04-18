@@ -33,7 +33,7 @@
 
 - Qt 6 (Core, Widgets, WebSockets modules)
 - C++17‑compatible compiler (MinGW, MSVC, Clang)
-- Sensor Server app installed on your smartphone (Android or iOS)
+- [Sensor Server app](https://github.com/umer0586/SensorServer) installed on your smartphone (Android or iOS)
 - CMake ≥ 3.16 or qmake (Qt) for build system
 
 ---
