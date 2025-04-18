@@ -172,3 +172,4 @@ cmake --build .
 - Gestures can be sensitive to small jitters. Tuning thresholds may be required.
 - macOS/Linux action implementations are not yet provided (Windows only).
 - It is currently impossible to delete a card without modifying the `presets.dat` file manually.
+- The settings button does not work yet.
