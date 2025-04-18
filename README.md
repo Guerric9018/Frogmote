@@ -2,6 +2,7 @@
 
 **Frogmote** is a Windows desktop application that transforms a smartphone into a gesture‑based remote control. It streams real‑time sensor (gyroscope) data over WebSockets, recognizes swipe gestures, and maps them to system or media actions on the desktop.
 
+![App screenshot](https://i.ibb.co/tw4nPsG2/Capture-d-cran-2025-04-18-000042.png)
 ---
 
 ## Table of Contents
