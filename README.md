@@ -89,7 +89,7 @@ cmake --build .
 ## Code Structure
 ```
 │
-├─ Remote/
+└─ Remote/
    ├─ mainwindow.*        # Builds main window, layouts, preset-switch logic
    ├─ preset.*            # Manages one preset panel: Card widgets + Add button
    ├─ card.*              # Individual gesture→action UI element
